@@ -19,11 +19,11 @@ No other changes needed. The action sets `PW_TEST_CONNECT_WS_ENDPOINT` and `PW_T
 
 | Input | Description | Default |
 |---|---|---|
-| `version` | Playwright version | `1.58.2` |
+| `version` | Playwright version | auto-detected from `@playwright/test` |
 | `port` | Port to expose the Playwright server on | `43424` |
 | `container-name` | Docker container name | `playwright` |
 
-Make sure the `version` matches the version of `@playwright/test` in your project.
+The `version` is auto-detected from the `@playwright/test` package installed in your project. You can override it explicitly if needed.
 
 ## How it works
 

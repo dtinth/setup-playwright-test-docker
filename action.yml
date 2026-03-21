@@ -6,8 +6,7 @@ inputs:
     description: Port to expose the Playwright server on
     default: "43424"
   version:
-    description: Playwright version
-    default: "1.58.2"
+    description: Playwright version (defaults to the version of @playwright/test installed in the project)
   container-name:
     description: Docker container name
     default: "playwright"
@@ -21,14 +20,20 @@ runs:
       run: |
         echo "container-name=${{ inputs.container-name }}" >> $GITHUB_OUTPUT
 
+        VERSION="${{ inputs.version }}"
+        if [ -z "$VERSION" ]; then
+          VERSION=$(node -e "console.log(require('@playwright/test/package.json').version)")
+        fi
+        echo "Playwright version: $VERSION"
+
         docker run -d \
           --name "${{ inputs.container-name }}" \
           -p "127.0.0.1:${{ inputs.port }}:${{ inputs.port }}" \
           --rm --init \
           --workdir /home/pwuser \
           --user pwuser \
-          "mcr.microsoft.com/playwright:v${{ inputs.version }}-noble" \
-          /bin/sh -c "npx -y playwright@${{ inputs.version }} run-server --port ${{ inputs.port }} --host 0.0.0.0"
+          "mcr.microsoft.com/playwright:v${VERSION}-noble" \
+          /bin/sh -c "npx -y playwright@${VERSION} run-server --port ${{ inputs.port }} --host 0.0.0.0"
 
         echo "PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:${{ inputs.port }}/" >> $GITHUB_ENV
         echo "PW_TEST_CONNECT_EXPOSE_NETWORK=*" >> $GITHUB_ENV
