@@ -2,7 +2,7 @@
 
 Running `npx playwright install --with-deps` in GitHub Actions normally [takes about a minute](https://github.com/microsoft/playwright/issues/23388) — it downloads and installs browsers and their system dependencies from scratch on every run.
 
-This action is a drop-in replacement that is 2–3x faster. It starts a [Playwright](https://playwright.dev/) server using a [pre-built Docker image](https://playwright.dev/docs/docker) and [configures the `PW_TEST_CONNECT_*` environment variables](https://playwright.dev/docs/docker#remote-connection) so your tests connect to it automatically — no changes to your test code required.
+This action is a drop-in replacement that is 2–3x faster. It starts a [Playwright](https://playwright.dev/) server using [the official pre-built Docker image](https://playwright.dev/docs/docker) and [configures the `PW_TEST_CONNECT_*` environment variables](https://playwright.dev/docs/docker#remote-connection) so your tests connect to it automatically — no changes to your test code required.
 
 <img width="2468" height="620" alt="image" src="https://github.com/user-attachments/assets/0e226311-6e37-407c-915a-f8bd5df61b60" />
 
