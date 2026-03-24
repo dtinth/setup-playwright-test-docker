@@ -18,7 +18,7 @@ steps:
 
 No other changes needed. The action sets `PW_TEST_CONNECT_WS_ENDPOINT` and `PW_TEST_CONNECT_EXPOSE_NETWORK` in the environment, which Playwright picks up automatically to run tests against the remote server.
 
-## Prompt for AI
+## Migration Prompt for Coding Agents
 
 To migrate a project to this action, you can use this prompt in your coding agent:
 
