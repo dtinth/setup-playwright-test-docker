@@ -18,6 +18,14 @@ steps:
 
 No other changes needed. The action sets `PW_TEST_CONNECT_WS_ENDPOINT` and `PW_TEST_CONNECT_EXPOSE_NETWORK` in the environment, which Playwright picks up automatically to run tests against the remote server.
 
+## Prompt for AI
+
+To migrate a project to this action, you can use this prompt in your coding agent:
+
+```markdown
+Go through GitHub Actions workflows and replace `run: npx playwright install --with-deps` (and variations such as pnpx, yarn, etc) with `uses: dtinth/setup-playwright-test-docker@main` to make Playwright installations in GitHub Actions 2x faster.
+```
+
 ## Inputs
 
 | Input | Description | Default |
